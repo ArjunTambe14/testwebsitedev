@@ -1,85 +1,31 @@
-// Smooth scrolling for navigation links
+// Smooth scrolling for internal links (e.g., #events, #info)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-});
-
-// Dynamic Event Loading (Simulated)
-const events = [
-    {
-        date: { day: "15", month: "OCT" },
-        title: "Global Music Festival",
-        time: "7:00 PM - 11:00 PM",
-        tags: ["concert", "outdoor"]
-    },
-    {
-        date: { day: "20", month: "OCT" },
-        title: "Local Basketball Finals",
-        time: "6:00 PM - 9:00 PM",
-        tags: ["sports", "indoor"]
-    },
-    {
-        date: { day: "25", month: "OCT" },
-        title: "Tech Expo 2024",
-        time: "10:00 AM - 6:00 PM",
-        tags: ["expo", "indoor"]
-    }
-];
-
-const eventsGrid = document.querySelector('.events-grid');
-
-events.forEach(event => {
-    const eventCard = document.createElement('div');
-    eventCard.classList.add('event-card');
-
-    eventCard.innerHTML = `
-        <div class="event-date">
-            <span class="day">${event.date.day}</span>
-            <span class="month">${event.date.month}</span>
-        </div>
-        <div class="event-info">
-            <h3>${event.title}</h3>
-            <p class="event-time">${event.time}</p>
-            <div class="event-tags">
-                ${event.tags.map(tag => `<span class="tag ${tag}">${tag}</span>`).join('')}
-            </div>
-        </div>
-    `;
-
-    eventsGrid.appendChild(eventCard);
-});
-
-// Ticket Purchase Simulation
-const ticketButton = document.querySelector('#box-office .btn');
-ticketButton.addEventListener('click', () => {
-    alert("Thank you for your interest! Redirecting to ticket purchase page...");
-    // Simulate redirect (replace with actual link)
-    window.location.href = "#";
-});
-
-// Contact Form Submission (Simulated)
-const contactForm = document.querySelector('#planner form');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = contactForm.querySelector('input[type="text"]').value;
-        const email = contactForm.querySelector('input[type="email"]').value;
-        const message = contactForm.querySelector('textarea').value;
-
-        if (name && email && message) {
-            alert(`Thank you, ${name}! We will contact you at ${email} shortly.`);
-            contactForm.reset();
-        } else {
-            alert("Please fill out all fields.");
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: 'smooth'
+            });
         }
     });
-}
+});
 
-// Fade-in Animation for Sections
+// Handle form submissions
+document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const formObject = Object.fromEntries(formData.entries());
+
+        // Simulate form submission
+        alert(`Thank you, ${formObject.name}! We will contact you at ${formObject.email}.`);
+        this.reset();
+    });
+});
+
+// Add fade-in animation for sections
 const sections = document.querySelectorAll('.section');
 
 const observer = new IntersectionObserver((entries) => {
@@ -92,4 +38,15 @@ const observer = new IntersectionObserver((entries) => {
 
 sections.forEach(section => {
     observer.observe(section);
+});
+
+// Highlight the current page in the navigation
+const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+const navLinks = document.querySelectorAll('.nav-links a');
+
+navLinks.forEach(link => {
+    const linkHref = link.getAttribute('href');
+    if (linkHref === currentPage) {
+        link.classList.add('active');
+    }
 });

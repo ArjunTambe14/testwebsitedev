@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community Arena</title>
+    <title>Plan - Community Arena</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
 </head>
@@ -21,31 +21,22 @@
             </div>
         </nav>
         <div class="hero">
-            <h1>Community Arena</h1>
-            <p>Where Moments Become Memories</p>
+            <h1>Plan Your Event</h1>
+            <p>Rent the arena for your next big event.</p>
         </div>
     </header>
     
-    <section id="events" class="section">
+    <section id="planner" class="section">
         <div class="container">
-            <h2 class="section-title">Upcoming Events</h2>
-            <div class="events-grid">
-                <div class="event-card">
-                    <div class="event-date">
-                        <span class="day">15</span>
-                        <span class="month">OCT</span>
-                    </div>
-                    <div class="event-info">
-                        <h3>Global Music Festival</h3>
-                        <p class="event-time">7:00 PM - 11:00 PM</p>
-                        <div class="event-tags">
-                            <span class="tag concert">Concert</span>
-                            <span class="tag outdoor">Outdoor</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Add more event cards similarly -->
-            </div>
+            <h2 class="section-title">Event Planning</h2>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="text" placeholder="Event Type (e.g., Concert, Wedding)" required>
+                <input type="date" placeholder="Event Date" required>
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit" class="btn">Submit Request</button>
+            </form>
         </div>
     </section>
     
